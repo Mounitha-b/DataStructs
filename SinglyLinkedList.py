@@ -20,11 +20,20 @@ class SinglyLinkedList(object):
         if n is None:
             self.start=new_node
             return
-        while n is not None:
-            print(n)
-            if (n.ref is None):
-                n.ref=new_node
+        while n.ref is not None:
             n=n.ref
+        n.ref=new_node
+        
+    def insert_after_item(self,data,search):
+        new_node=Node(data)
+        n=self.start_node
+        
+        while n is not None:
+            if(n.item==search):
+                
+                break
+            n=n.ref
+           
         
     def traverse(self):
         n=self.start_node
