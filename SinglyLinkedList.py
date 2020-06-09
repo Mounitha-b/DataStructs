@@ -52,6 +52,34 @@ class SinglyLinkedList(object):
     #         new_node.ref = n.ref
     #         n.ref = new_node
            
+    
+    
+    
+    def insert_before_item(self,data,search):
+        new_node=Node(data)
+        n=self.start_node
+        
+        if n is None:
+            print("List is empty")
+            return
+        if n.item==search:
+            new_node.ref=n
+            self.start_node=new_node
+            return
+        
+        while n.ref is not None:
+            if(n.ref.item==search):
+                
+                break
+            n=n.ref
+            
+        if n.ref is None:
+            print("Element not found")
+        else:
+            new_node.ref=n.ref
+            n.ref=new_node
+                
+            
         
     def traverse(self):
         n=self.start_node
@@ -73,5 +101,6 @@ test.insert_at_start(1)
 test.insert_at_start(2)
 test.insert_at_end(5)
 test.insert_after_item(7,4)
+test.insert_before_item(8,5)
+test.insert_before_item(8,2)
 test.traverse()
-        
