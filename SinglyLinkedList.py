@@ -27,12 +27,30 @@ class SinglyLinkedList(object):
     def insert_after_item(self,data,search):
         new_node=Node(data)
         n=self.start_node
-        
+        flag=False
         while n is not None:
             if(n.item==search):
-                
+                flag=True
+                new_node.ref=n.ref
+                n.ref=new_node
                 break
             n=n.ref
+        if(not flag):
+            print("Element not found")
+    # def insert_after_item(self, x, data):
+
+    #     n = self.start_node
+    #     print(n.ref)
+    #     while n is not None:
+    #         if n.item == x:
+    #             break
+    #         n = n.ref
+    #     if n is None:
+    #         print("item not in the list")
+    #     else:
+    #         new_node = Node(data)
+    #         new_node.ref = n.ref
+    #         n.ref = new_node
            
         
     def traverse(self):
@@ -54,5 +72,6 @@ test=SinglyLinkedList()
 test.insert_at_start(1)
 test.insert_at_start(2)
 test.insert_at_end(5)
+test.insert_after_item(7,4)
 test.traverse()
         
