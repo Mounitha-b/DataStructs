@@ -46,13 +46,16 @@ class DynamicArray(object):
         self.length=0
             
     def removeAt(self,ind):
+        B=[None]*self.length
         for i,j in zip(range(self.length),range(self.length)):
+            
             if(i==ind):
                 j=j-1
             else:
                 B[j]=self.A[i]
             B[j]=self.A[i]
-            
+        self.A=B
+        return self.A
         
             
         
@@ -80,7 +83,7 @@ print(A.size())
 print(A.isempty())
 A.set(3,5)
 A.show()
-A.removeAt(0)
+A.removeAt(3)
 A.show()
 
 
