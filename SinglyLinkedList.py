@@ -139,7 +139,17 @@ class SinglyLinkedList(object):
         else:
             self.start_node=n.ref
             n.ref=None
-        
+    
+    def reverse_linkedlist(self):
+        prev = None
+        n = self.start_node
+        while n is not None:
+            next = n.ref
+            n.ref = prev
+            prev = n
+            n = next
+        self.start_node = prev
+    
     def bubblesortbyswap(self):
         end=None
         
@@ -153,6 +163,8 @@ class SinglyLinkedList(object):
                     q.item=temp
                 p=p.ref
             end=p
+    
+    
     
     def merge_sorted_lists(self,a,b):
         em=None
