@@ -174,6 +174,19 @@ class SinglyLinkedList(object):
             
         else:
             n.ref=n.ref.ref
+            
+    def reverse_list(self):
+        n=self.start_node
+        prev=None
+        while n is not None:
+            next=n.ref
+            n.ref=prev
+            prev=n
+            n=next
+            
+        self.start_node=prev
+        
+        
         
 
 test=SinglyLinkedList()
@@ -185,24 +198,28 @@ test.insert_before_item(8,5)
 test.insert_before_item(8,2)
 test.traverse()
 print("-----")
-test.insert_at_index(8,55)
-test.traverse()
-print("-----")
-print(test.getCount())
-print("-----")
-print(test.search_item(84))
-test.delete_at_start()
-print("-----")
-test.traverse()
 
-test.delete_at_end()
+# test.insert_at_index(8,55)
+# test.traverse()
+# print("-----")
+# print(test.getCount())
+# print("-----")
+# print(test.search_item(84))
+# test.delete_at_start()
+# print("-----")
+# test.traverse()
+
+# test.delete_at_end()
 
 
-print("-----")
+# print("-----")
+# test.traverse()
+
+# print("-----")
+# test.delete_value(1)
+# test.traverse()
+# # test2 =SinglyLinkedList()
+
+test.reverse_list()
 test.traverse()
-
-print("-----")
-test.delete_value(1)
-test.traverse()
-# test2 =SinglyLinkedList()
-# test2.make_new_list()
+# # test2.make_new_list()
