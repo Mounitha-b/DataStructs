@@ -130,8 +130,51 @@ class SinglyLinkedList(object):
                 return True
             n=n.ref
         return False
-     
+    
+    def delete_at_start(self):
+        n=self.start_node
+        if n is None:
+            print ("List is empty. Nothing to delete")
+            return
+        else:
+            self.start_node=n.ref
+            n.ref=None
+        
+    def delete_at_end(self):
+        n=self.start_node
+        if n is None:
+            print ("List is empty. Nothing to delete")
+            return
+        
+        if(n.ref is None):
+            self.start_node=None
+        
+        while n.ref is not None:
+            if(n.ref.ref is None):
+                n.ref=None
+                break
+            n=n.ref
             
+    def delete_value(self,data):
+        n=self.start_node
+        
+        if n is None:
+            print ("Enpty list")
+            return
+        if self.start_node==data:
+            self.start_node=n.ref
+        
+        while n.ref is not None:
+            if n.ref.item==data:
+                break
+            n=n.ref
+        
+        if n.ref is None:
+            print ("Item not found")
+            
+        else:
+            n.ref=n.ref.ref
+        
 
 test=SinglyLinkedList()
 test.insert_at_start(1)
@@ -148,6 +191,18 @@ print("-----")
 print(test.getCount())
 print("-----")
 print(test.search_item(84))
+test.delete_at_start()
+print("-----")
+test.traverse()
 
-test2 =SinglyLinkedList()
-test2.make_new_list()
+test.delete_at_end()
+
+
+print("-----")
+test.traverse()
+
+print("-----")
+test.delete_value(1)
+test.traverse()
+# test2 =SinglyLinkedList()
+# test2.make_new_list()
