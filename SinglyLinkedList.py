@@ -140,86 +140,87 @@ class SinglyLinkedList(object):
             self.start_node=n.ref
             n.ref=None
         
-    def delete_at_end(self):
-        n=self.start_node
-        if n is None:
-            print ("List is empty. Nothing to delete")
-            return
+    def bubblesortbyswap(self):
+        end=None
         
-        if(n.ref is None):
-            self.start_node=None
+        while (self.start_node != end):
+            p=self.start_node
+            while (p.ref!=end):
+                q=p.ref
+                if(p.item>q.item):
+                    temp=p.item
+                    p.item=q.item
+                    q.item=temp
+                p=p.ref
+            end=p
+    
+    def merge_sorted_lists(self,a,b):
+        em=None
+        merged_list=SinglyLinkedList()
         
-        while n.ref is not None:
-            if(n.ref.ref is None):
-                n.ref=None
-                break
-            n=n.ref
-            
-    def delete_value(self,data):
-        n=self.start_node
-        
-        if n is None:
-            print ("Enpty list")
-            return
-        if self.start_node==data:
-            self.start_node=n.ref
-        
-        while n.ref is not None:
-            if n.ref.item==data:
-                break
-            n=n.ref
-        
-        if n.ref is None:
-            print ("Item not found")
-            
+        if(a.item<=b.item):
+            merged_list.start_node=Node(a.item)
+            a=a.ref
         else:
-            n.ref=n.ref.ref
+            merged_list.start_node=Node(b.item)
+            b=b.ref
+        em=merged_list.start_node
+        
+        while(a is not None and b is not None):
+            if(a.item<=b.item):
+                em.ref=Node(a.item)
+                a=a.ref
+                em=em.ref
+            elif(b.item<a.item):
+                em.ref=Node(b.item)
+                b=b.ref
+                em=em.ref
+                
+        while(a is not None):
+            em.ref=Node(a.item)
+            a=a.ref
+            em=em.ref
+                
+        while(b is not None):
+            em.ref=Node(b.item)
+            b=b.ref
+            em=em.ref
+        return  merged_list
             
-    def reverse_list(self):
-        n=self.start_node
-        prev=None
-        while n is not None:
-            next=n.ref
-            n.ref=prev
-            prev=n
-            n=next
-            
-        self.start_node=prev
-        
-        
-        
+# test=SinglyLinkedList()
+# test.insert_at_start(1)
+# test.insert_at_start(2)
+# test.insert_at_end(5)
+# test.insert_at_end(99)
+# test.insert_at_end(0)
+# test.insert_after_item(7,4)
+# test.insert_before_item(8,5)
+# test.insert_before_item(8,2)
+# test.traverse()
 
-test=SinglyLinkedList()
-test.insert_at_start(1)
-test.insert_at_start(2)
-test.insert_at_end(5)
-test.insert_after_item(7,4)
-test.insert_before_item(8,5)
-test.insert_before_item(8,2)
-test.traverse()
-print("-----")
-
+# print("-----")
 # test.insert_at_index(8,55)
 # test.traverse()
 # print("-----")
 # print(test.getCount())
 # print("-----")
 # print(test.search_item(84))
-# test.delete_at_start()
-# print("-----")
+# test.bubblesortbyswap()
 # test.traverse()
 
-# test.delete_at_end()
+list1=SinglyLinkedList()
+list1.insert_at_start(10)
+list1.insert_at_end(45)
+list1.insert_at_end(65)
 
+list2=SinglyLinkedList()
+list2.insert_at_start(5)
+list2.insert_at_end(15)
+list2.insert_at_end(35)
+list2.insert_at_end(68)
 
-# print("-----")
-# test.traverse()
-
-# print("-----")
-# test.delete_value(1)
-# test.traverse()
-# # test2 =SinglyLinkedList()
-
-test.reverse_list()
-test.traverse()
-# # test2.make_new_list()
+# list1.traverse()
+# print(list1.start_node)
+# print(list2.start_node)
+list3=SinglyLinkedList()
+list3.merge_sorted_lists(list1.start_node,list2.start_node).traverse()
