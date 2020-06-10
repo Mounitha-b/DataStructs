@@ -79,7 +79,29 @@ class SinglyLinkedList(object):
             new_node.ref=n.ref
             n.ref=new_node
                 
+    def insert_at_index(self,index,data):
+        new_node=Node(data)
+        n=self.start_node
+        count=1
+        if (index==1):
+            new_node.ref=n
+            self.start_node=new_node
+            return
+        
+        while n is not None:
+            # print("c",count)
+            if(count==index-1):
+                break
+            n=n.ref
+            count+=1
             
+        if n is None:
+            print("index out of bound")
+        else:    
+            new_node.ref=n.ref
+            n.ref=new_node
+        
+        
         
     def traverse(self):
         n=self.start_node
@@ -90,10 +112,25 @@ class SinglyLinkedList(object):
         while n is not None:
             print(n.item)
             n=n.ref
+    
+    def getCount(self):
+        n=self.start_node
+        
+        count=0
+        while n is not None:
+            count+=1
+            n=n.ref
+        return count
+        
             
-            
-            
-            
+    def search_item(self,num):
+        n=self.start_node
+        while n is not None:
+            if n.item==num:
+                return True
+            n=n.ref
+        return False
+     
             
 
 test=SinglyLinkedList()
@@ -104,3 +141,13 @@ test.insert_after_item(7,4)
 test.insert_before_item(8,5)
 test.insert_before_item(8,2)
 test.traverse()
+print("-----")
+test.insert_at_index(8,55)
+test.traverse()
+print("-----")
+print(test.getCount())
+print("-----")
+print(test.search_item(84))
+
+test2 =SinglyLinkedList()
+test2.make_new_list()
